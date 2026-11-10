@@ -4,7 +4,9 @@
 
 <p align="center">
   <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/yards"><b>Yards</b></a> ·
-  <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/characters-companions"><b>Characters &amp; Companions</b></a> ·
+  <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/themes"><b>Themes</b></a> ·
+  <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/characters"><b>Characters</b></a> ·
+  <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/companions"><b>Companions</b></a> ·
   <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/help"><b>Help</b></a> ·
   <a href="https://github.com/oddessentials/agent-guild-community/discussions/categories/ideas"><b>Ideas</b></a>
 </p>
@@ -31,8 +33,8 @@ Yards and pieces hold only models, pictures and settings, never code, and each a
 
 1. **Yards:** in Builders, use **Export world…**, then zip the `.agworld` file.
    **Characters and companions:** zip the piece folder.
-2. Start a post in [Yards](https://github.com/oddessentials/agent-guild-community/discussions/new?category=yards) or
-   [Characters & Companions](https://github.com/oddessentials/agent-guild-community/discussions/new?category=characters-companions).
+2. Start a post in [Yards](https://github.com/oddessentials/agent-guild-community/discussions/new?category=yards), [Themes](https://github.com/oddessentials/agent-guild-community/discussions/new?category=themes),
+   [Characters](https://github.com/oddessentials/agent-guild-community/discussions/new?category=characters) or [Companions](https://github.com/oddessentials/agent-guild-community/discussions/new?category=companions).
 3. Fill in the form, drag in a screenshot and your `.zip`, and post. Bigger than 25 MB? Attach it to a release in a
    repository of your own and paste the link.
 
