@@ -2,15 +2,19 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for sharing. Name it in the title above, then fill this in.
-        Zip the piece folder (its `piece.json` and models) so GitHub accepts it.
+        Thanks for sharing companions. Name it in the title above, then fill this in.
+        Zip the piece folder (its `piece.json` and `companion_0.glb` to `companion_3.glb`) so GitHub accepts it.
   - type: dropdown
-    id: kind
+    id: world
     attributes:
-      label: Kind
+      label: Base world
       options:
-        - Character
-        - Companion
+        - The Guild Yard
+        - Orbital Station
+        - The Living Grove
+        - Operations Campus
+        - Goblinville Works
+        - Gnomeland Village
     validations:
       required: true
   - type: dropdown
@@ -21,7 +25,6 @@ body:
       options:
         - Agent Guild
         - "Agent Guild: World"
-        - Grove Companion
     validations:
       required: true
   - type: textarea

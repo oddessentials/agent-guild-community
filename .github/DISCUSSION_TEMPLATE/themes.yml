@@ -1,0 +1,78 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing a theme: a Yard with its characters and companions. Name it in the title above, then fill this in.
+        Zip the `.agworld` file and every piece folder together so GitHub accepts it.
+  - type: dropdown
+    id: world
+    attributes:
+      label: Base world
+      options:
+        - The Guild Yard
+        - Orbital Station
+        - The Living Grove
+        - Operations Campus
+        - Goblinville Works
+        - Gnomeland Village
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag in one or more pictures of the theme. The first one is its cover.
+    validations:
+      required: true
+  - type: textarea
+    id: download
+    attributes:
+      label: Download
+      description: Drag in the zip (up to 25 MB), or paste a link to a release in a GitHub repository of your own.
+    validations:
+      required: true
+  - type: textarea
+    id: characters
+    attributes:
+      label: Characters
+      description: One per line, with the crew it is for.
+      placeholder: "Santa Claude: Claude Code"
+    validations:
+      required: true
+  - type: textarea
+    id: companions
+    attributes:
+      label: Companions
+      placeholder: "Snow Gnomes"
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: About this theme
+  - type: input
+    id: builders
+    attributes:
+      label: Builders build
+      placeholder: "Build 32"
+    validations:
+      required: true
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: What others may do with it.
+      options:
+        - "CC BY 4.0: reuse and remix with credit"
+        - "CC BY-NC 4.0: reuse and remix with credit, not commercially"
+        - "CC0: no conditions"
+        - "All rights reserved: download and use only"
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights
+      options:
+        - label: I made this theme, or have the right to share everything in it.
+          required: true

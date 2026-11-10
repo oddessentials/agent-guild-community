@@ -1,7 +1,3 @@
-# The community's steward. On each new or edited post in Yards or Characters &
-# Companions it labels the post from its form (base world, kind) and checks it
-# has a screenshot and a download, marking it "needs details" until it does.
-# A first-time poster gets one welcome comment. Judgement calls stay with people.
 name: Steward
 
 on:
@@ -23,7 +19,7 @@ jobs:
         with:
           script: |
             const d = context.payload.discussion
-            const showcase = ['yards', 'characters-companions'].includes(d.category.slug)
+            const showcase = ['yards', 'themes', 'characters', 'companions'].includes(d.category.slug)
             const created = context.payload.action === 'created'
             const staff = ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(d.author_association)
             const { owner, repo } = context.repo
@@ -55,8 +51,9 @@ jobs:
             if (showcase) {
               if (!/!\[[^\]]*\]\(|<img\s/i.test(answer('Screenshots'))) missing.push('a screenshot')
               if (!/https?:\/\//.test(answer('Download'))) missing.push('a download: the `.zip` itself, or a link to it')
-              if (d.category.slug === 'yards') add.add(answer('Base world'))
-              else add.add(answer('Kind').toLowerCase())
+              add.add(answer('Base world'))
+              if (d.category.slug === 'characters') add.add('character')
+              if (d.category.slug === 'companions') add.add('companion')
               if (missing.length) add.add('needs details')
               else remove.add('needs details')
             }
