@@ -1,0 +1,23 @@
+title: ""
+labels: []
+body:
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      multiple: true
+      options:
+        - Agent Guild
+        - "Agent Guild: Builders"
+        - "Agent Guild: World"
+        - Grove Companion
+        - This community
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What you'd like, and what it would let you do.
+    validations:
+      required: true

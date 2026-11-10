@@ -1,0 +1,87 @@
+# The community's steward. On each new or edited post in Yards or Characters &
+# Companions it labels the post from its form (base world, kind) and checks it
+# has a screenshot and a download, marking it "needs details" until it does.
+# A first-time poster gets one welcome comment. Judgement calls stay with people.
+name: Steward
+
+on:
+  discussion:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  discussions: write
+
+concurrency:
+  group: steward-${{ github.event.discussion.number }}
+
+jobs:
+  steward:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const d = context.payload.discussion
+            const showcase = ['yards', 'characters-companions'].includes(d.category.slug)
+            const created = context.payload.action === 'created'
+            const staff = ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(d.author_association)
+            const { owner, repo } = context.repo
+
+            // A form's answers, by the label above them.
+            const body = d.body || ''
+            const answer = (label) => {
+              const at = body.indexOf(`### ${label}`)
+              if (at === -1) return ''
+              const rest = body.slice(at + label.length + 4)
+              const end = rest.search(/\n### /)
+              const text = (end === -1 ? rest : rest.slice(0, end)).trim()
+              return text === '_No response_' ? '' : text
+            }
+
+            const { repository: r } = await github.graphql(`
+              query ($owner: String!, $repo: String!, $number: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  discussion(number: $number) { id labels(first: 30) { nodes { name } } }
+                  labels(first: 100) { nodes { id name } }
+                }
+              }`, { owner, repo, number: d.number })
+            const labelId = new Map(r.labels.nodes.map((l) => [l.name, l.id]))
+            const has = new Set(r.discussion.labels.nodes.map((l) => l.name))
+            const add = new Set()
+            const remove = new Set()
+
+            const missing = []
+            if (showcase) {
+              if (!/!\[[^\]]*\]\(|<img\s/i.test(answer('Screenshots'))) missing.push('a screenshot')
+              if (!/https?:\/\//.test(answer('Download'))) missing.push('a download: the `.zip` itself, or a link to it')
+              if (d.category.slug === 'yards') add.add(answer('Base world'))
+              else add.add(answer('Kind').toLowerCase())
+              if (missing.length) add.add('needs details')
+              else remove.add('needs details')
+            }
+
+            const ids = (names, keep) => [...names].filter((n) => labelId.has(n) && keep(n)).map((n) => labelId.get(n))
+            const toAdd = ids(add, (n) => !has.has(n))
+            const toRemove = ids(remove, (n) => has.has(n))
+            if (toAdd.length) {
+              await github.graphql(`mutation ($id: ID!, $labels: [ID!]!) { addLabelsToLabelable(input: { labelableId: $id, labelIds: $labels }) { clientMutationId } }`, { id: r.discussion.id, labels: toAdd })
+            }
+            if (toRemove.length) {
+              await github.graphql(`mutation ($id: ID!, $labels: [ID!]!) { removeLabelsFromLabelable(input: { labelableId: $id, labelIds: $labels }) { clientMutationId } }`, { id: r.discussion.id, labels: toRemove })
+            }
+
+            // One comment, only when the post is new: a welcome, what's missing, or both.
+            if (!created) return
+            const { search } = await github.graphql(`
+              query ($q: String!) { search(type: DISCUSSION, query: $q, first: 1) { discussionCount } }`,
+              { q: `repo:${owner}/${repo} author:${d.user.login}` })
+            const first = !staff && search.discussionCount <= 1
+            const lines = []
+            if (first) lines.push(`Welcome to the Guild, @${d.user.login}! Thanks for your first post.`)
+            if (missing.length) {
+              lines.push(`${first ? 'One more thing: it' : 'It'} still needs ${missing.join(' and ')}. Edit the post to add ${missing.length > 1 ? 'them' : 'it'}, and the **needs details** label clears by itself.`)
+            }
+            if (!lines.length) return
+            await github.graphql(`mutation ($id: ID!, $body: String!) { addDiscussionComment(input: { discussionId: $id, body: $body }) { clientMutationId } }`,
+              { id: r.discussion.id, body: lines.join('\n\n') })

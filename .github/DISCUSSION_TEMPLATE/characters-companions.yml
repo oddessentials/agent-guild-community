@@ -1,0 +1,65 @@
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing. Name it in the title above, then fill this in.
+        Zip the piece folder (its `piece.json` and models) so GitHub accepts it.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Character
+        - Companion
+    validations:
+      required: true
+  - type: dropdown
+    id: apps
+    attributes:
+      label: Works with
+      multiple: true
+      options:
+        - Agent Guild
+        - "Agent Guild: World"
+        - Grove Companion
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag in one or more pictures. The first one is its cover.
+    validations:
+      required: true
+  - type: textarea
+    id: download
+    attributes:
+      label: Download
+      description: Drag in the zipped folder (up to 25 MB), or paste a link to a release in a GitHub repository of your own, or to its Steam Workshop page.
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: About it
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: What others may do with it.
+      options:
+        - "CC BY 4.0: reuse and remix with credit"
+        - "CC BY-NC 4.0: reuse and remix with credit, not commercially"
+        - "CC0: no conditions"
+        - "All rights reserved: download and use only"
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights
+      options:
+        - label: I made this, or have the right to share everything in it.
+          required: true

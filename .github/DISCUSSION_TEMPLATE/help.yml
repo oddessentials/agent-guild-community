@@ -1,0 +1,32 @@
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask anything about making or using Yards, characters and companions. When someone answers it, mark their reply as the answer.
+        Found a bug in an app? Report it in [agent-guild](https://github.com/oddessentials/agent-guild/issues) instead.
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      multiple: true
+      options:
+        - Agent Guild
+        - "Agent Guild: Builders"
+        - "Agent Guild: World"
+        - Grove Companion
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: What you're trying to do, and what happens instead. Screenshots help.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Shown in the app's About or settings.
