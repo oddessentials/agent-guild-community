@@ -15,6 +15,15 @@ The home of everything people make for [Agent Guild](https://agentguild.oddessen
 [Agent Guild: Builders](https://github.com/oddessentials/agent-guild-builders), characters and companions, and
 the people who make them. Browse, download, ask, and share your own.
 
+**Start with:** the [Pixel Office](https://github.com/oddessentials/agent-guild-community/discussions/11) and
+[Emberwood Glade](https://github.com/oddessentials/agent-guild-community/discussions/9) themes, and the
+[Coral Cove](https://github.com/oddessentials/agent-guild-community/discussions/13),
+[Neon City](https://github.com/oddessentials/agent-guild-community/discussions/14) and
+[Bonfire Lagoon](https://github.com/oddessentials/agent-guild-community/discussions/12) Yards.
+
+**New to Agent Guild?** [Try the Yard in your browser](https://oddessentials.github.io/agent-guild/?view=yard): nothing
+to install. Then get it free for Windows, macOS and Linux at [agentguild.oddessentials.ai](https://agentguild.oddessentials.ai).
+
 ## Use a Yard
 
 1. Open a post in **Yards** and download its file. Unzip it to get the `.agworld` file.
