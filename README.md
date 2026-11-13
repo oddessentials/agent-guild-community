@@ -33,6 +33,8 @@ to install. Then get it free for Windows, macOS and Linux at [agentguild.oddesse
 ## Use a character or companion
 
 - **Agent Guild:** **Customize this Yard**, then **Replace** beside the crew or **Companions**, and choose the unzipped folder.
+  [Steam Workshop](https://steamcommunity.com/app/5462970/workshop/) pieces work too: subscribe, then choose
+  **Steam Workshop** in the folder picker. Steam downloads them only with Agent Guild: World (free) installed.
 - **Agent Guild: World:** subscribe on the [Steam Workshop](https://steamcommunity.com/app/5462970/workshop/), or use **Add a piece from a folder…**
 - **Grove Companion:** **Add character…** from its menu, and choose the unzipped folder.
 
